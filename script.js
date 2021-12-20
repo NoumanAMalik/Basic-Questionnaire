@@ -36,3 +36,69 @@ const quizData = [
         correct: 'c'
     }
 ]
+
+const quiz = document.getElementById("quiz");
+
+const answerElements = document.querySelectorAll(".answer");
+
+const questionElement = document.getElementById("question");
+
+const a_text = document.getElementById("a_text");
+const b_text = document.getElementById("b_text");
+const c_text = document.getElementById("c_text");
+const d_text = document.getElementById("d_text");
+
+const submitButton = document.getElementById("submit");
+
+let currentQuiz = 0;
+let score = 0;
+
+loadQuiz();
+
+function loadQuiz() {
+    deselectAnswers();
+
+    const currentQuizData = quizData[currentQuiz];
+    
+    questionElement.innerHTML = currentQuizData.question;
+    a_text.innerHTML = currentQuizData.a;
+    b_text.innerHTML = currentQuizData.b;
+    c_text.innerHTML = currentQuizData.c;
+    d_text.innerHTML = currentQuizData.d;
+}
+
+function getSelected() {
+    let answer = undefined;
+
+    answerElements.forEach((answerElement) => {
+        if (answerElement.checked) {
+            answer = answerElement.id;
+        }
+    });
+
+    return answer;
+}
+
+function deselectAnswers() {
+    answerElements.forEach((answerElement) => {
+        answerElement.checked = false;
+    });
+}
+
+submitButton.addEventListener("click", () => {
+    // Check to see the answer
+    const answer = getSelected();
+
+    if (answer) {
+        if (answer === quizData[currentQuiz].correct) {
+            score ++;
+        }
+
+        currentQuiz ++;
+        if (currentQuiz < quizData.length) {
+                loadQuiz();
+        } else {
+            quiz.innerHTML = `<h2>You answered correctly ${score} out of ${quizData.length} questions.</h2>`
+        }
+    }
+});
