@@ -19,7 +19,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px 5px rgba(100, 100, 100, 0.1);
     overflow: hidden;
-    width: 500px;
+    width: 650px;
     max-width: 100%;
 }
 
@@ -28,6 +28,7 @@ body {
 }
 
 h2 {
+    font-size: 1.3rem;
     margin: 0;
 }
 
@@ -38,7 +39,7 @@ ul {
 }
 
 ul li {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: 1rem 0;
 }
 
